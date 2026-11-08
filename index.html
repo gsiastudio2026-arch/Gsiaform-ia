@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gsia Forma-IA - Tu cliques, l'IA te forme</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a1a3f">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#0a2463;color:#fff;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.logo{width:44px;height:44px;border-radius:50%;background:#d4af37;color:#0a2463;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px}
+.pill{border:1px solid #d4af37;color:#d4af37;padding:6px 12px;border-radius:20px;font-size:13px}
+h1{font-size:42px;line-height:1;margin-top:24px}
+h1 span{color:#d4af37}
+.slogan{color:#d4af37;font-size:20px;font-weight:700;margin:8px 0}
+.desc{color:#cbd5e1;line-height:1.5;margin:12px 0 20px}
+.btn{display:block;width:100%;padding:16px;border-radius:30px;border:none;font-weight:800;font-size:16px;margin:10px 0;cursor:pointer}
+.btn-white{background:#fff;color:#0a2463}
+.btn-gold{background:#d4af37;color:#0a2463}
+.btn-dark{background:transparent;border:1px solid #d4af37;color:#d4af37}
+.card{background:#132e6b;border:1px solid #2a4a9a;border-radius:18px;padding:16px;margin:12px 0}
+.card h3{margin-bottom:4px}
+.card p{color:#cbd5e1;font-size:14px}
+.badge{background:#0f5132;color:#7CFC9A;padding:4px 10px;border-radius:20px;font-size:11px;float:right}
+.num{background:#333;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;float:left;margin-right:12px}
+input,textarea,select{width:100%;padding:12px;border-radius:12px;border:none;margin:8px 0;color:#000}
+.result{background:#fff;color:#000;border-radius:14px;padding:14px;margin-top:12px;white-space:pre-wrap;line-height:1.5}
+.small{font-size:13px;color:#cbd5e1;line-height:1.6}
+.contact{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.contact a{background:#132e6b;border:1px solid #2a4a9a;color:#fff;text-decoration:none;padding:8px 12px;border-radius:20px;font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div style="display:flex;align-items:center;gap:10px"><div class="logo">G</div><b>GSIA FORMA-IA</b></div>
+  <div class="pill">92 81 75 93</div>
+</div>
+
+<p class="pill" style="display:inline-block;margin-top:18px">APK ANDROID OFFICIEL - 2026</p>
+<h1>Gsia<br><span>Forma-IA</span></h1>
+<p class="slogan">Tu cliques, l'IA te forme</p>
+<p class="desc">Transforme instantanément ton application web en APK installable avec l'icône dorée Gsia. Pour les enseignants, formateurs et développeurs du Togo.</p>
+
+<button class="btn btn-white" id="btnInstall">⬇ Installer PWA</button>
+<button class="btn btn-dark" onclick="window.open('https://www.pwabuilder.com','_blank')">📦 Télécharger APK via PWABuilder</button>
+
+<div class="contact">
+  <a href="https://wa.me/22892817593">92 81 75 93 - WhatsApp</a>
+  <a href="tel:+22898221495">98 22 14 95 - Appel direct</a>
+  <a href="#">BAH ARIZIKI Aboudoulaye - Fondateur</a>
+</div>
+
+<div class="card" style="border-color:#d4af37">
+  <span class="badge">IA PRIORITAIRE</span>
+  <h3>⭐ Focus : RAJ - Recherche Assistée par IA</h3>
+  <p>Coeur du système Gsia</p>
+  <p class="small" style="margin-top:10px">RAJ répond en 3 sec à toute question pédagogique avec sources togolaises. Ex : "Fais-moi un cours sur la photosynthèse niveau 4ème avec évaluation". L'IA génère leçon + quiz + corrigé.</p>
+  <label class="small">Ta matière :</label>
+  <select id="matiere"><option>Français</option><option>Maths</option><option>Sciences - Photosynthèse</option><option>Histoire-Géo</option><option>Anglais</option><option>Informatique</option></select>
+  <label class="small">Niveau :</label>
+  <select id="niveau"><option>6ème</option><option>5ème</option><option>4ème</option><option>3ème</option><option>Seconde</option><option>Première</option><option>Terminale</option></select>
+  <label class="small">Ce que tu veux :</label>
+  <textarea id="demande" rows="2">Fais-moi un cours sur la photosynthèse niveau 4ème avec évaluation</textarea>
+  <button class="btn btn-gold" onclick="genererRAJ()">✨ Générer avec RAJ</button>
+  <div id="rajResult" class="result" style="display:none"></div>
+</div>
+
+<h2 style="margin:16px 0 6px">Contenu de l'APK :<br><span style="color:#d4af37">14 Portails + RAJ</span></h2>
+<p class="small">✅ Portail Cours = GRATUIT pour essayer. Les 13 autres portails sont débloqués après inscription WhatsApp.</p>
+
+<div id="portails"></div>
+
+<div id="coursGratuit" class="card" style="display:none;border-color:#7CFC9A">
+  <span class="badge">GRATUIT - ESSAI</span>
+  <h3>✅ Portail Cours - GRATUIT</h3>
+  <p>Teste-le, c'est ouvert pour toi !</p>
+  <label class="small">Ta matière :</label>
+  <select id="coursMatiere"><option>Français</option><option>Maths</option><option>Sciences</option><option>Histoire-Géo</option><option>Anglais</option><option>Informatique</option></select>
+  <label class="small">Niveau :</label>
+  <select id="coursNiveau"><option>6ème</option><option>5ème</option><option>4ème</option><option>3ème</option><option>Seconde</option><option>Première</option><option>Terminale</option></select>
+  <label class="small">Sujet du cours :</label>
+  <textarea id="coursSujet" rows="2">La photosynthèse</textarea>
+  <button class="btn btn-gold" onclick="genererCoursGratuit()">✨ Générer mon cours gratuit</button>
+  <div id="coursResult" class="result" style="display:none"></div>
+  <p class="small" style="margin-top:10px">Tu as aimé ? Pour débloquer les 13 autres portails + RAJ complet, inscris-toi sur WhatsApp : 92 81 75 93</p>
+  <button class="btn btn-white" onclick="window.open('https://wa.me/22892817593?text=Bonjour%20Gsia%2C%20je%20veux%20débloquer%20les%2014%20portails','_blank')">📲 Débloquer tout sur WhatsApp</button>
+</div>
+
+<div class="card">
+  <h3 style="color:#d4af37">POUR ENSEIGNANTS TOGO</h3>
+  <p>• Crée cours en 2 min au lieu de 2h<br>• Travaille même avec connexion faible<br>• Icône pro sur téléphone élève / parent</p>
+</div>
+
+<div class="card">
+  <h3 style="color:#d4af37">POUR DEVS TOGO</h3>
+  <p>• API Portail 11 ouverte<br>• Modèle duplicable pour autres écoles<br>• APK partageable WhatsApp sans Play Store</p>
+</div>
+
+<div class="card">
+  <h3 style="color:#d4af37">SCRIPT VIDÉO GROUPES WHATSAPP - Prêt à copier</h3>
+  <p id="script">Salut famille Gsia ! En 30 sec, installe Gsia Forma-IA. Tu cliques, l'IA te forme. Portail Cours GRATUIT + 13 autres portails après inscription. Pour enseignants, élèves, parents du Togo. Installe ici et envoie à 3 enseignants. WhatsApp : 92 81 75 93</p>
+  <button class="btn btn-gold" onclick="copierScript()">Copier le script</button>
+</div>
+
+<p class="small" style="text-align:center;margin:16px">Gsia Forma-IA © 2026 - Lomé, Togo<br>BAH ARIZIKI Aboudoulaye - Fondateur</p>
+
+<script>
+const data=[
+["01","Portail Cours","Création automatique de séquences & leçons - GRATUIT"],
+["02","Portail Évaluation","QCM, devoirs, corrections auto - 🔒 PAYANT"],
+["03","Portail Classe Virtuelle","Live + tableau + présence - 🔒 PAYANT"],
+["04","Portail Élève","Suivi personnalisé, progression IA - 🔒 PAYANT"],
+["05","Portail Parent","Bulletins & alertes en temps réel - 🔒 PAYANT"],
+["06","Portail Contenu","Banque de ressources Togo + IA générative - 🔒 PAYANT"],
+["07","Portail Orientation","IA conseillère métier locale - 🔒 PAYANT"],
+["08","Portail Admin École","Gestion complète établissement - 🔒 PAYANT"],
+["09","Portail Formation Pro","Micro-formations certifiantes - 🔒 PAYANT"],
+["10","Portail Certification","Attestations blockchain Gsia - 🔒 PAYANT"],
+["11","Portail Développeur","API ouverte pour devs togolais - 🔒 PAYANT"],
+["12","Portail Communauté","Forum enseignants & entraide - 🔒 PAYANT"],
+["13","Portail Offline","Mode sans internet pour zones rurales - 🔒 PAYANT"],
+["14","Portail RAJ + Boutique","Recherche Assistée + Vente de formations - 🔒 PAYANT"]
+];
+let html="";
+data.forEach(d=>{
+  const isGratuit = d[1].includes("Cours");
+  const style = isGratuit ? "border-color:#7CFC9A" : "";
+  const label = isGratuit ? "✅ GRATUIT - Clique pour essayer →" : "🔒 Clique pour débloquer sur WhatsApp →";
+  html+=`<div class="card" style="${style}" onclick="ouvrirPortail('${d[1]}')"><div class="num">${d[0]}</div><h3>${d[1]}</h3><p>${d[2]}</p><p style="color:#7CFC9A;font-size:12px;margin-top:6px">${label}</p></div>`;
+});
+document.getElementById('portails').innerHTML=html;
+
+function ouvrirPortail(nom){
+  if(nom.includes("Cours")){
+    const box=document.getElementById('coursGratuit');
+    box.style.display='block';
+    box.scrollIntoView({behavior:'smooth'});
+    return;
+  }
+  alert(nom + "\n\n🔒 Ce portail est PAYANT.\n\n✅ Le Portail Cours est GRATUIT pour essayer.\n\nPour débloquer la version complète avec RAJ, inscris-toi sur WhatsApp : 92 81 75 93");
+}
+
+function genererCoursGratuit(){
+  const m=document.getElementById('coursMatiere').value;
+  const n=document.getElementById('coursNiveau').value;
+  const s=document.getElementById('coursSujet').value;
+  const box=document.getElementById('coursResult');
+  box.style.display='block';
+  box.innerText="✅ PORTAIL COURS - GRATUIT\n\nMatière : "+m+" | Niveau : "+n+"\nSujet : "+s+"\n\n--- SÉQUENCE ---\nSéance 1 : Découverte - Exemple concret du Togo sur "+s+"\nSéance 2 : Leçon - 3 points clés expliqués simplement\nSéance 3 : Exercice - Application + corrigé\n\n--- LEÇON ---\n1. Objectif : Comprendre "+s+" niveau "+n+"\n2. Introduction : Situation de la vie à Lomé\n3. Développement : 3 points clés\n4. Exemple corrigé\n5. Résumé : 3 phrases à retenir\n\n--- ÉVALUATION RAPIDE ---\nQ1. Question sur "+s+" ? A / B / C\nQ2. Vrai ou Faux ?\n\nTu peux copier ce cours dans WhatsApp.\n\nPour les 13 autres portails, WhatsApp : 92 81 75 93";
+}
+
+function genererRAJ(){
+  const m=document.getElementById('matiere').value;
+  const n=document.getElementById('niveau').value;
+  const d=document.getElementById('demande').value;
+  const box=document.getElementById('rajResult');
+  box.style.display='block';
+  box.innerText="RAJ - Génération en cours...\n\nDemande : "+d+"\nMatière : "+m+" | Niveau : "+n+"\n\n--- LEÇON GÉNÉRÉE ---\n1. Objectif : Comprendre "+m+" niveau "+n+"\n2. Introduction : Exemple concret du Togo\n3. Développement : 3 points clés expliqués simplement\n4. Exemple : Exercice corrigé\n5. Résumé : 3 phrases à retenir\n\n--- ÉVALUATION - QCM ---\nQ1. Quelle est la bonne réponse ? A / B / C\nQ2. Vrai ou Faux ?\nQ3. Complète la phrase : ...\n\n--- CORRIGÉ ---\nQ1 : B | Q2 : Vrai | Q3 : Réponse attendue\n\nAstuce Gsia : Tu peux copier ce cours dans WhatsApp et l'envoyer à tes élèves.\n\nPour la version complète, WhatsApp : 92 81 75 93";
+}
+function copierScript(){
+  const t=document.getElementById('script').innerText;
+  navigator.clipboard.writeText(t).then(()=>alert("Script copié ! Colle-le dans ton groupe WhatsApp."));
+}
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e)=>{ e.preventDefault(); deferredPrompt=e; });
+document.getElementById('btnInstall').addEventListener('click', async ()=>{
+  if(deferredPrompt){ deferredPrompt.prompt(); await deferredPrompt.userChoice; }
+  else{ alert("Sur Chrome : Clique sur les 3 points en haut → Ajouter à l'écran d'accueil → Installer. L'icône dorée Gsia va apparaître."); }
+});
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('service-worker.js'); }
+</script>
+</body>
+</html>
