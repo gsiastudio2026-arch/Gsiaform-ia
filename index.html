@@ -1,155 +1,76 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GSIA - Form-IA | 17 Portails</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#0f172a;color:#fff}
-header{background:linear-gradient(90deg,#0ea5e9,#7c3aed);padding:18px;text-align:center}
-header h1{margin:0;font-size:22px}header p{margin:5px 0 0;opacity:.9}
-.wrap{padding:14px;max-width:900px;margin:auto}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#1e293b;border-radius:14px;padding:14px;cursor:pointer;border:1px solid #334155}
-.card b{display:block;font-size:15px}.card span{font-size:12px;opacity:.8}
-.card small{color:#22c55e}.free{color:#facc15!important}
-.box{background:#fff;color:#111;border-radius:14px;padding:16px;margin-top:14px;display:none}
-input,select,textarea{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #cbd5e1;font-size:15px}
-button{padding:12px 16px;border:0;border-radius:10px;font-weight:bold;cursor:pointer}
-.btn{background:#0ea5e9;color:#fff;width:100%}.btn2{background:#22c55e;color:#fff}
-.btn3{background:#ef4444;color:#fff}.btn4{background:#f59e0b;color:#000}
-#resultat{white-space:pre-wrap;background:#f8fafc;padding:12px;border-radius:10px;margin-top:10px;min-height:120px;line-height:1.6}
-.raj{background:#fef9c3;color:#111;padding:12px;border-radius:10px;margin-top:10px}
-table{width:100%;border-collapse:collapse}td,th{border:1px solid #94a3b8;padding:6px;text-align:center;font-size:13px}
-</style></head>
-<body>
-<header><h1>🎓 GSIA FORM-IA</h1><p>Tu cliques → L'IA écrit → L'IA parle. Sans formateur.</p>
-<p style="font-size:12px">Lomé - Togo | 17 Portails + RAJ Registre d'Appel</p></header>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSIA FORM-IA - 17 Portails</title>
+<style>*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#0f172a;color:#fff}
+header{background:linear-gradient(90deg,#0ea5e9,#7c3aed);padding:16px;text-align:center}
+.wrap{padding:12px;max-width:900px;margin:auto}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#1e293b;border-radius:14px;padding:12px;cursor:pointer;border:1px solid #334155}
+.card b{font-size:14px}.card span{font-size:11px;opacity:.8}
+.box{background:#fff;color:#111;border-radius:14px;padding:14px;margin-top:12px;display:none}
+input,select,textarea{width:100%;padding:11px;margin:5px 0;border-radius:10px;border:1px solid #cbd5e1;font-size:15px}
+button{padding:11px;border:0;border-radius:10px;font-weight:bold;cursor:pointer}
+.btn{background:#0ea5e9;color:#fff;width:100%}.btn2{background:#22c55e;color:#fff}.btn3{background:#ef4444;color:#fff}.btn4{background:#f59e0b;color:#000}
+#resultat{white-space:pre-wrap;background:#f8fafc;padding:12px;border-radius:10px;margin-top:10px;min-height:100px;line-height:1.6}
+.raj{background:#fef9c3;color:#111;padding:10px;border-radius:10px;margin-top:10px}
+table{width:100%;border-collapse:collapse}td,th{border:1px solid #94a3b8;padding:5px;text-align:center;font-size:12px}
+.keybox{background:#fef08a;color:#111;padding:12px;border-radius:12px;margin-bottom:12px}
+</style></head><body>
+<header><h1>🎓 GSIA FORM-IA</h1><p>Tu cliques → L'IA écrit → L'IA parle</p><p style="font-size:12px">17 Portails + RAJ Registre d'Appel | Lomé - Togo</p></header>
 <div class="wrap">
-<div style="background:#fef08a;color:#111;padding:10px;border-radius:10px;font-size:13px">🔑 <b>Étape 1 :</b> Colle ta clé Gemini dans le code à <b>COLLE_TA_CLE_ICI</b> une seule fois. Ensuite tout marche avec internet.</div>
+<div class="keybox"><b>🔑 Étape 1 - Ta clé Gemini (1 seule fois) :</b><br>
+<input id="cleInput" type="password" placeholder="Colle ici ta clé qui commence par AQ...">
+<button class="btn" onclick="sauverCle()" style="background:#111">✅ Enregistrer ma clé dans mon téléphone</button>
+<p id="cleStatus" style="font-size:13px;margin:5px 0 0">❌ Pas encore de clé enregistrée.</p>
+<p style="font-size:11px">Ta clé reste dans TON téléphone, elle ne part jamais sur GitHub. C'est ça qui est sûr.</p></div>
 <div class="grid" id="grid"></div>
-
 <div class="box" id="panel">
-<h2 id="titrePortail"></h2>
-<p id="descPortail" style="color:#475569"></p>
-<label>Matière / Thème</label>
+<h2 id="titrePortail"></h2><p id="descPortail" style="color:#475569"></p>
 <select id="matiere"><option>Informatique</option><option>Français</option><option>Mathématiques</option><option>Sciences</option><option>Histoire-Géo</option><option>Anglais</option><option>SVT</option><option>Physique-Chimie</option><option>HTML / CSS</option><option>JavaScript</option><option>Python</option><option>Développement App</option></select>
-<label>Classe / Niveau</label>
 <select id="classe"><option>CP1</option><option>CP2</option><option>CE1</option><option>CE2</option><option>CM1</option><option>CM2</option><option selected>6ème</option><option>5ème</option><option>4ème</option><option>3ème</option><option>2nde</option><option>1ère</option><option>Terminale</option><option>Formation Adulte</option></select>
-<label>Ton sujet / Ta question</label>
-<textarea id="sujet" rows="3" placeholder="Ex: La fenêtre, La fiche pédagogique sur l'addition, Comment créer une appli de registre d'appel..."></textarea>
-<button class="btn" onclick="generer()">✨ Générer avec la vraie IA Gemini</button>
-<div style="display:flex;gap:8px;margin-top:8px">
-<button class="btn2" onclick="lire()">🔊 Écouter le cours</button>
-<button class="btn3" onclick="arreter()">⏹️ Arrêter</button>
-</div>
-<div id="resultat">Choisis un portail, écris ton sujet, clique sur Générer.</div>
-<button class="btn4" onclick="copierTexte()" style="margin-top:8px;width:100%">📋 Copier</button>
-
-<!-- RAJ REGISTRE D'APPEL - Portail 08 -->
-<div id="rajBox" style="display:none">
-<h3>📒 RAJ - Registre d'Appel Journalier (ta vidéo)</h3>
-<input id="ecole" placeholder="Nom école ex: EPP Lomé Centre">
-<input id="directeur" placeholder="Nom directeur">
-<input id="titulaire" placeholder="Nom titulaire">
-<input id="classeRaj" placeholder="Classe ex: CM2 A">
-<input id="annee" placeholder="Année ex: 2026-2027">
-<div style="display:flex;gap:8px"><input id="garcons" type="number" placeholder="Garçons inscrits"><input id="filles" type="number" placeholder="Filles inscrites"></div>
-<div style="display:flex;gap:8px"><input id="entrees" type="number" placeholder="Entrées" value="0"><input id="sorties" type="number" placeholder="Sorties" value="0"></div>
-<div style="display:flex;gap:8px"><input id="joursOuv" type="number" placeholder="Jours ouvrables ex: 22" value="22"><input id="absences" type="number" placeholder="Total absences ex: 12" value="0"></div>
-<input id="feries" placeholder="Jours fériés à exclure ex: Mardi en novembre">
-<button class="btn" onclick="calculerRAJ()">📊 Calculer mon RAJ</button>
-<div class="raj" id="rajResult"></div>
-<button class="btn2" onclick="lireRAJ()">🔊 Écouter le résultat RAJ</button>
-<button class="btn4" onclick="window.print()">🖨️ Exporter / PDF</button>
-</div>
-</div>
-</div>
-
+<textarea id="sujet" rows="3" placeholder="Ex: La fiche pédagogique sur l'addition, Comment créer une appli de registre d'appel..."></textarea>
+<button class="btn" onclick="generer()">✨ Générer avec vraie IA Gemini</button>
+<div style="display:flex;gap:8px;margin-top:8px"><button class="btn2" onclick="lire()">🔊 Écouter</button><button class="btn3" onclick="arreter()">⏹️ Arrêter</button></div>
+<div id="resultat">Choisis un portail, écris ton sujet, clique Générer.</div>
+<button class="btn4" onclick="copierTexte()" style="width:100%;margin-top:8px">📋 Copier</button>
+<div id="rajBox" style="display:none"><h3>📒 RAJ - Registre d'Appel Journalier</h3>
+<input id="ecole" placeholder="École ex: EPP Lomé Centre"><input id="classeRaj" placeholder="Classe ex: CM2 A"><input id="annee" placeholder="Année ex: 2026-2027">
+<div style="display:flex;gap:6px"><input id="garcons" type="number" placeholder="Garçons"><input id="filles" type="number" placeholder="Filles"></div>
+<div style="display:flex;gap:6px"><input id="entrees" type="number" placeholder="Entrées" value="0"><input id="sorties" type="number" placeholder="Sorties" value="0"></div>
+<div style="display:flex;gap:6px"><input id="joursOuv" type="number" placeholder="Jours ouvrables" value="22"><input id="absences" type="number" placeholder="Total absences" value="0"></div>
+<button class="btn" onclick="calculerRAJ()">📊 Calculer mon RAJ</button><div class="raj" id="rajResult"></div>
+<button class="btn2" onclick="lireRAJ()">🔊 Écouter le résultat</button> <button class="btn4" onclick="window.print()">🖨️ PDF / Imprimer</button>
+</div></div></div>
 <script>
-// ===== COLLE TA CLÉ ICI =====
-const GEMINI_KEY = "COLLE_TA_CLE_ICI";
-// =============================
-
+function getCle(){return localStorage.getItem('gsia_gemini_key')||'';}
+function sauverCle(){let v=document.getElementById('cleInput').value.trim();if(!v) return alert('Colle d’abord ta clé');localStorage.setItem('gsia_gemini_key',v);document.getElementById('cleStatus').innerText='✅ Clé enregistrée dans ton téléphone. Tu peux générer maintenant.';document.getElementById('cleInput').value='';alert('Clé enregistrée !');}
+if(getCle()) document.getElementById('cleStatus').innerText='✅ Clé déjà enregistrée. Tu peux générer.';
 const portails=[
 ["01 Portail Cours","Création séquences & leçons - GRATUIT","Tu es un excellent prof au Togo. Écris un cours complet, simple, avec définition, exemples de Lomé, étapes, exercice + corrigé."],
-["02 Portail Évaluation","QCM, devoirs, corrections auto","Crée 10 QCM différents avec 4 choix, bonne réponse et explication. Niveau Togo."],
+["02 Portail Évaluation","QCM, devoirs, corrections auto","Crée 10 QCM avec 4 choix, bonne réponse et explication. Niveau Togo."],
 ["03 Portail Classe Virtuelle","Live + tableau + présence","Prépare un plan de classe virtuelle de 45 min avec tableau, questions, présence."],
-["04 Portail Élève","Suivi personnalisé, progression IA","Fais un plan de suivi personnalisé pour cet élève, ses forces, faiblesses, exercices."],
-["05 Portail Parent","Bulletins & alertes","Écris un message clair pour les parents en français simple, comment aider l'enfant à la maison."],
-["06 Portail Contenu","Banque ressources Togo + IA","Propose 5 ressources, exemples togolais, images à dessiner, activités."],
-["07 Portail Orientation","IA conseillère métier locale","Conseille un métier au Togo selon ce sujet, les études, le salaire, les débouchés à Lomé."],
-["08 Portail Admin École","Gestion + RAJ Registre d'Appel","Tu es directeur d'école au Togo. Donne un modèle de gestion + ouvre le RAJ."],
-["09 Portail Formation Pro","Micro-formations certifiantes","Crée une micro-formation pro en 5 modules, avec compétences et attestation."],
-["10 Portail Certification","Attestations blockchain Gsia","Propose le contenu d'une attestation, critères de réussite et compétences validées."],
+["04 Portail Élève","Suivi personnalisé, progression IA","Fais un plan de suivi personnalisé pour cet élève."],
+["05 Portail Parent","Bulletins & alertes","Écris un message clair pour les parents en français simple."],
+["06 Portail Contenu","Banque ressources Togo + IA","Propose 5 ressources, exemples togolais, activités."],
+["07 Portail Orientation","IA conseillère métier locale","Conseille un métier au Togo selon ce sujet."],
+["08 Portail Admin École","Gestion + RAJ Registre d'Appel","Tu es directeur d'école au Togo. Donne un modèle de gestion."],
+["09 Portail Formation Pro","Micro-formations certifiantes","Crée une micro-formation pro en 5 modules."],
+["10 Portail Certification","Attestations blockchain Gsia","Propose le contenu d'une attestation."],
 ["11 Portail Développeur","API ouverte pour devs togolais","Explique comme un dev senior comment utiliser une API, avec exemple de code."],
-["12 Portail Communauté","Forum enseignants & entraide","Propose 3 questions de discussion pour entraider les enseignants du Togo."],
-["13 Portail Offline","Mode sans internet zones rurales","Donne une version courte du cours qui marche sans internet, à recopier au tableau."],
-["14 Portail RAJ + Boutique","Recherche Assistée + Vente","Réponds comme un assistant IA togolais, clair, simple, avec exemples."],
-["15 Portail Fiche Pédagogique","Comment élaborer une fiche pédagogique","Crée une fiche pédagogique complète prête pour l'inspection: Objectifs, Prérequis, Matériel, Déroulement étape par étape, Évaluation."],
-["16 Portail Développer une Application","Comment développer une application","Forme étape par étape pour créer une application: idée, fichiers, code, test, publication sur GitHub. Donne le code de base."],
+["12 Portail Communauté","Forum enseignants & entraide","Propose 3 questions de discussion pour enseignants du Togo."],
+["13 Portail Offline","Mode sans internet zones rurales","Donne une version courte du cours qui marche sans internet."],
+["14 Portail RAJ + Boutique","Recherche Assistée + Vente","Réponds comme un assistant IA togolais, clair, simple."],
+["15 Portail Fiche Pédagogique","Fiche pédagogique complète","Crée une fiche pédagogique complète prête pour l'inspection: Objectifs, Prérequis, Matériel, Déroulement étape par étape, Évaluation."],
+["16 Portail Développer une Application","Développer une application","Forme étape par étape pour créer une application: idée, fichiers, code, test, publication sur GitHub. Donne le code de base."],
 ["17 Portail Programmation Web","HTML, CSS, JS, Python","Forme de zéro en programmation web: leçon simple, exemple de code, exercice + corrigé."]
 ];
-let portailActuel=0;
-const grid=document.getElementById('grid');
-portails.forEach((p,i)=>{
-let d=document.createElement('div');d.className='card';
-d.innerHTML=`<b>${p[0]}</b><span>${p[1]}</span><br><small>${i==0?'GRATUIT • Clique pour ouvrir':'Clique pour ouvrir'}</small>`;
-d.onclick=()=>ouvrir(i);grid.appendChild(d);
-});
-function ouvrir(i){
-portailActuel=i;
-document.getElementById('panel').style.display='block';
-document.getElementById('titrePortail').innerText=portails[i][0];
-document.getElementById('descPortail').innerText=portails[i][1];
-document.getElementById('rajBox').style.display=(i==7?'block':'none');
-window.scrollTo({top:600,behavior:'smooth'});
-}
-async function generer(){
-let mat=document.getElementById('matiere').value, cl=document.getElementById('classe').value, suj=document.getElementById('sujet').value||'Cours général';
-let res=document.getElementById('resultat');
-res.innerText='⏳ Gemini écrit ton cours... attends 3 secondes...';
-let prompt=portails[portailActuel][2]+` Matière: ${mat}. Classe: ${cl}. Sujet: ${suj}. Réponds en français simple du Togo, avec exemples de Lomé.`;
-try{
-let r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
-let j=await r.json();
-let txt=j.candidates?.[0]?.content?.parts?.[0]?.text;
-if(!txt) throw new Error('Pas de réponse');
-res.innerText=txt;
-}catch(e){
-res.innerText='⚠️ Pas internet ou clé pas encore collée.\n\nVoici un cours de secours :\n\n'+portails[portailActuel][0]+' - '+mat+' '+cl+' - '+suj+'\n\nDéfinition: '+suj+' c\'est un sujet important au Togo.\nExemple de Lomé: On l\'utilise au marché, à l\'école, à la maison.\nÉtapes: 1) Observer 2) Comprendre 3) Pratiquer 4) Réviser.\nExercice: Donne 2 exemples de '+suj+'.\nCorrigé: Voir exemples ci-dessus.\n\nColle ta clé dans le code pour avoir le vrai cours Gemini.';
-}
-}
-function lire(){
-speechSynthesis.cancel();
-let t=document.getElementById('resultat').innerText;
-let u=new SpeechSynthesisUtterance(t);
-u.lang='fr-FR';u.rate=0.95;
-let voix=speechSynthesis.getVoices().find(v=>v.lang.includes('fr'))||speechSynthesis.getVoices()[0];
-if(voix) u.voice=voix;
-speechSynthesis.speak(u);
-}
+let portailActuel=0;const grid=document.getElementById('grid');
+portails.forEach((p,i)=>{let d=document.createElement('div');d.className='card';d.innerHTML=`<b>${p[0]}</b><br><span>${p[1]}</span>`;d.onclick=()=>ouvrir(i);grid.appendChild(d);});
+function ouvrir(i){portailActuel=i;document.getElementById('panel').style.display='block';document.getElementById('titrePortail').innerText=portails[i][0];document.getElementById('descPortail').innerText=portails[i][1];document.getElementById('rajBox').style.display=(i==7?'block':'none');window.scrollTo({top:600,behavior:'smooth'});}
+async function generer(){let mat=document.getElementById('matiere').value,cl=document.getElementById('classe').value,suj=document.getElementById('sujet').value||'Cours général';let res=document.getElementById('resultat');let key=getCle();if(!key){res.innerText='⚠️ Colle d’abord ta clé en haut dans la case jaune, clique Enregistrer, puis Générer.';return;}res.innerText='⏳ Gemini écrit ton cours...';let prompt=portails[portailActuel][2]+` Matière: ${mat}. Classe: ${cl}. Sujet: ${suj}. Réponds en français simple du Togo, avec exemples de Lomé.`;
+try{let r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});let j=await r.json();let txt=j.candidates?.[0]?.content?.parts?.[0]?.text;if(!txt) throw new Error('no');res.innerText=txt;}catch(e){res.innerText='⚠️ Erreur clé ou internet. Vérifie que ta clé AQ... est bien collée en haut. Cours de secours: '+portails[portailActuel][0]+' - '+suj+' - Définition, Exemple de Lomé, Étapes 1 Observer 2 Comprendre 3 Pratiquer, Exercice.';}}
+function lire(){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(document.getElementById('resultat').innerText);u.lang='fr-FR';u.rate=0.95;speechSynthesis.speak(u);}
 function arreter(){speechSynthesis.cancel();}
 function copierTexte(){navigator.clipboard.writeText(document.getElementById('resultat').innerText);alert('Copié !');}
-function calculerRAJ(){
-let g=+document.getElementById('garcons').value||0, f=+document.getElementById('filles').value||0;
-let ent=+document.getElementById('entrees').value||0, sor=+document.getElementById('sorties').value||0;
-let jours=+document.getElementById('joursOuv').value||22, abs=+document.getElementById('absences').value||0;
-let total=g+f, restant=total+ent-sor;
-let demi=jours*2;
-let possible=restant*demi;
-let effective=possible-abs;
-let pPres=possible?((effective/possible)*100).toFixed(1):0;
-let pAbs=possible?((abs/possible)*100).toFixed(1):0;
-let html=`<b>École:</b> ${document.getElementById('ecole').value} | <b>Classe:</b> ${document.getElementById('classeRaj').value} | <b>Année:</b> ${document.getElementById('annee').value}<br><br>
-<table><tr><th></th><th>Garçons</th><th>Filles</th><th>Total</th></tr><tr><td>Inscrits</td><td>${g}</td><td>${f}</td><td>${total}</td></tr><tr><td>Entrées</td><td colspan=2></td><td>${ent}</td></tr><tr><td>Sorties</td><td colspan=2></td><td>${sor}</td></tr><tr><td><b>Effectif restant</b></td><td colspan=2></td><td><b>${restant}</b></td></tr></table><br>
-Jours ouvrables: ${jours} | Demi-journées: ${demi} | Jours fériés: ${document.getElementById('feries').value}<br>
-<b>Présence possible:</b> ${possible} | <b>Total absences:</b> ${abs}<br>
-<b>Présence effective:</b> ${effective}<br>
-<b>% Présence:</b> ${pPres}% | <b>% Absence:</b> ${pAbs}%`;
-document.getElementById('rajResult').innerHTML=html;
-document.getElementById('rajResult').dataset.texte=`École ${document.getElementById('ecole').value}. Effectif restant ${restant} élèves. Présence possible ${possible}. Présence effective ${effective}. Pourcentage de présence ${pPres} pour cent. Pourcentage d'absence ${pAbs} pour cent.`;
-}
-function lireRAJ(){
-let t=document.getElementById('rajResult').dataset.texte||'Calcule d’abord ton RAJ.';
-let u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';speechSynthesis.speak(u);
-}
+function calculerRAJ(){let g=+document.getElementById('garcons').value||0,f=+document.getElementById('filles').value||0,ent=+document.getElementById('entrees').value||0,sor=+document.getElementById('sorties').value||0,jours=+document.getElementById('joursOuv').value||22,abs=+document.getElementById('absences').value||0;let total=g+f,restant=total+ent-sor,demi=jours*2,possible=restant*demi,effective=possible-abs,pPres=possible?((effective/possible)*100).toFixed(1):0,pAbs=possible?((abs/possible)*100).toFixed(1):0;document.getElementById('rajResult').innerHTML=`<b>${document.getElementById('ecole').value} | ${document.getElementById('classeRaj').value}</b><br>Inscrits: ${total} | Restant: <b>${restant}</b><br>Possible: ${possible} | Effective: ${effective}<br><b>% Présence: ${pPres}% | % Absence: ${pAbs}%</b>`;document.getElementById('rajResult').dataset.texte=`Effectif restant ${restant} élèves. Présence possible ${possible}. Présence effective ${effective}. Pourcentage de présence ${pPres} pour cent.`;}
+function lireRAJ(){let u=new SpeechSynthesisUtterance(document.getElementById('rajResult').dataset.texte||'Calcule d’abord');u.lang='fr-FR';speechSynthesis.speak(u);}
 </script></body></html>
