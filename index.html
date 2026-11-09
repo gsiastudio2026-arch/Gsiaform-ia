@@ -113,4 +113,36 @@ function openPortal(p){
 }
 function fermer(){ arreterVoix(); view.style.display='none'; window.scrollTo(0,0); }
 function setOut(t){ currentText=t; document.getElementById('out').textContent=t; }
+function genCours(){
+  const m=document.getElementById('m').value, c=document.getElementById('c').value, l=document.getElementById('l').value, d=document.getElementById('d').value;
+  setOut(`FICHE PÉDAGOGIQUE COMPLÈTE - GSIA\n\nMATIÈRE : ${m}\nCLASSE : ${c}\nLEÇON : ${l}\nDURÉE : ${d}\nENSEIGNANT : DG\n\n1. OBJECTIF GÉNÉRAL\nÀ la fin de la séance, l'élève sera capable de faire ${l} seul, avec des exemples de la vie à Lomé.\n\n2. OBJECTIFS SPÉCIFIQUES\n- Connaître la règle de ${l}\n- Appliquer ${l} dans 5 exercices\n- Expliquer à un camarade comment faire ${l}\n\n3. MATÉRIEL\n- Tableau, craies, cahiers\n- Cailloux / bâtonnets pour compter\n- Exemples du marché : oranges, tomates, 1000 FCFA\n\n4. DÉROULEMENT - ${d}\nA) RAPPEL 5 MIN :\n- Bonjour, rappel de la leçon d'hier\n- 3 questions rapides au tableau\n\nB) DÉCOUVERTE 10 MIN :\n- Situation : Maman achète 12 oranges + 8 oranges au marché de Hédzranawoé. Combien en tout ?\n- Les élèves proposent, on compte ensemble.\n\nC) LEÇON 15 MIN :\n- Explication simple pas à pas de ${l}\n- Exemple 1 : 12 + 8 = 20\n- Exemple 2 : 25 + 15 = 40\n- Exemple 3 : 100 + 50 = 150\n- Astuce : Toujours aligner les unités.\n\nD) EXERCICES 15 MIN :\n1) 12 + 8 = ?\n2) 25 + 15 = ?\n3) 34 + 26 = ?\n4) 100 + 250 = ?\n5) Problème : Kossi a 45 billes, Ama lui donne 30. Total ?\n\nE) CORRECTION 10 MIN :\n- Correction au tableau avec les élèves\n- Explication des erreurs fréquentes\n\nF) ÉVALUATION 5 MIN :\n- 3 questions rapides\n- Qui a compris ? Lever la main\n\n5. DEVOIR À LA MAISON\n- Faire 5 additions à la maison\n- Demander à papa/maman un exemple du marché\n\n6. CONSEIL IA FORMATEUR\nParle lentement. Donne toujours un exemple du marché ou de la maison. Félicite les élèves qui essayent, même s'ils se trompent. Ne crie pas. Répète 2 fois la règle.\n\nGénéré par GSIA - Sans clé - Offline - Togo`);
+}
+function genQCM(){
+  const m=document.getElementById('m').value, c=document.getElementById('c').value, l=document.getElementById('l').value;
+  setOut(`ÉVALUATION COMPLÈTE - QCM + DEVOIR - GSIA\n\nMATIÈRE : ${m} - CLASSE : ${c} - LEÇON : ${l}\n\nPARTIE 1 : QCM - 10 POINTS\nQ1 : 12 + 8 = ?\nA) 18  B) 20 ✅  C) 22\nQ2 : 25 + 15 = ?\nA) 30  B) 40 ✅  C) 45\nQ3 : 100 + 50 = ?\nA) 150 ✅  B) 120  C) 130\nQ4 : 34 + 26 = ?\nA) 50  B) 60 ✅  C) 70\nQ5 : 45 + 30 = ?\nA) 75 ✅  B) 65  C) 85\n\nPARTIE 2 : DEVOIR - 10 POINTS\nExercice 1 : Kossi a 45 billes, il gagne 30. Combien en tout ?\nExercice 2 : Au marché, maman achète 120 tomates + 80 tomates. Total ?\n\nCORRECTION AUTOMATIQUE\nQ1=B, Q2=B, Q3=A, Q4=B, Q5=A\nDevoir : Ex1 = 75 billes, Ex2 = 200 tomates\nNote /20 : 1 point par bonne réponse.\nConseil IA : Si l'élève a moins de 10/20, revoir la leçon ${l} avec des cailloux.`);
+}
+function genLive(){
+  const l=document.getElementById('l').value, m=document.getElementById('m').value;
+  setOut(`FICHE CLASSE VIRTUELLE - GSIA\n\nCLASSE : ${l}\nMATIÈRE : ${m}\nLIEN LIVE : https://gsia.live/classe-cm2\nTABLEAU : Activé - Tu peux écrire\nPRÉSENCE : Liste prête - Coche les présents\nCHAT : Activé pour les questions\n\nDÉROULEMENT 60 MIN :\n0-5 min : Accueil, appel, rappel\n5-15 min : Découverte avec exemple du marché\n15-35 min : Leçon + exemples au tableau\n35-50 min : Exercices en direct\n50-60 min : Questions + devoir\n\nCONSEIL IA : Parle fort, regarde la caméra, pose une question toutes les 5 minutes pour garder les élèves.`);
+}
+function genEleve(){
+  const l=document.getElementById('l').value, c=document.getElementById('c').value, m=document.getElementById('m').value;
+  setOut(`SUIVI PERSONNALISÉ ÉLÈVE - GSIA\n\nÉLÈVE : ${l}\nCLASSE : ${c}\nMATIÈRE SUIVIE : ${m}\n\nPROGRESSION GLOBALE : 78% - Bien\n\nDÉTAIL :\n- Mathématiques : 85% - Très bien, il maîtrise l'addition\n- Français : 70% - À améliorer, revoir la lecture\n- Sciences : 80% - Bien\n\nPOINTS FORTS :\n- Rapide en calcul\n- Participe en classe\n\nPOINTS À AMÉLIORER :\n- Orthographe\n- Concentration en fin de cours\n\nPLAN IA POUR LA SEMAINE :\nLundi : 10 min addition\nMardi : 10 min lecture\nMercredi : Exercices\nJeudi : Révision\nVendredi : Mini-test\n\nCONSEIL IA POUR L'ENSEIGNANT : Félicite ${l} pour ses progrès en maths. Donne-lui 2 exercices de français chaque jour. Parle à ses parents.`);
+}
+function genWeb(){
+  const l=document.getElementById('l').value, c=document.getElementById('c').value;
+  setOut(`PROJET PROGRAMMATION WEB COMPLET - GSIA\n\nPROJET : ${l}\nNIVEAU : ${c}\n\nÉTAPE 1 : CRÉE LE FICHIER\nCrée un fichier index.html sur ton téléphone ou ordinateur.\n\nÉTAPE 2 : COLLE CE CODE\n<!DOCTYPE html>\n<html lang="fr">\n<head><meta charset="UTF-8"><title>Ma Boutique Lomé</title>\n<style>body{font-family:Arial;text-align:center;background:#fef3c7}h1{color:#2563eb}button{padding:12px;background:#16a34a;color:white;border:0;border-radius:10px}</style>\n</head>\n<body>\n<h1>Bienvenue à ma boutique à Lomé !</h1>\n<p>Tomates, oranges, tissus - Prix en FCFA</p>\n<button onclick="alert('Merci ! Commande reçue')">Commander</button>\n</body></html>\n\nÉTAPE 3 : OUVRE DANS CHROME\nOuvre index.html, tu verras ton site.\n\nÉTAPE 4 : AMÉLIORE\nChange le titre, les couleurs, ajoute tes produits.\n\nEXPLICATION IA LIGNE PAR LIGNE\n- h1 = gros titre\n- p = paragraphe\n- button = bouton cliquable\n- style = couleurs\n- script = logique JavaScript\n\nPYTHON BONUS :\nprint("Bonjour Lomé")\n# Devine le nombre - Essaie de coder un jeu en Python après.\n\nConseil IA : Ne copie pas bêtement. Change 3 choses dans le code pour apprendre.`);
+}
+function ecouter(){
+  if(!currentText || currentText.includes('ici...')){ alert('Génère d’abord la fiche, puis clique sur Écouter'); return; }
+  try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(currentText); u.lang='fr-FR'; u.rate=0.9; u.pitch=1; speechSynthesis.speak(u); }catch(e){ alert('Voix non disponible sur ce téléphone. Lis la fiche.'); }
+}
+function arreterVoix(){ try{ speechSynthesis.cancel(); }catch(e){} }
+function copier(){
+  if(!currentText){ alert('Génère d’abord la fiche'); return; }
+  navigator.clipboard.writeText(currentText).then(()=>alert('✅ Fiche copiée ! Colle-la dans WhatsApp ou Word')).catch(()=>alert('Sélectionne le texte et copie manuellement'));
+}
+</script>
+</body>
+</html>
 
