@@ -1,57 +1,59 @@
+<!-- GSIA - PARTIE 1 / 3 - COPIE TOUT -->
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GSIA - 17 Portails - Avec Voix IA</title>
-<style>body{font-family:Arial;background:#0f172a;color:white;margin:0;padding:16px}h1{font-size:22px;text-align:center}h1 span{color:#facc15}.sub{text-align:center;color:#cbd5e1;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.card{background:white;color:#111;border-radius:14px;padding:14px;cursor:pointer}.card b{font-size:14px}.card p{font-size:12px;color:#475569;margin:6px 0}.open{border:3px solid #22c55e}.locked{opacity:.75;border:2px dashed #94a3b8}.badge{font-size:11px;padding:4px 8px;border-radius:20px}.green{background:#dcfce7}.red{background:#fee2e2}#view{background:white;color:#111;border-radius:14px;padding:16px;margin-top:16px;display:none}input,select{width:100%;padding:10px;margin:6px 0;border:1px solid #cbd5e1;border-radius:8px}button{width:100%;padding:12px;background:#2563eb;color:white;border:0;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px}.btn-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.btn-listen{background:#16a34a}.btn-stop{background:#dc2626}.btn-fiche{background:#7c3aed}.out{background:#f1f5f9;padding:12px;border-radius:10px;white-space:pre-wrap;font-size:13px;margin-top:10px;min-height:120px}.pay{background:#fef3c7;padding:12px;border-radius:10px;text-align:center;color:#111}.back{background:#e2e8f0;color:#111}.voice{background:#ecfdf5;border:1px solid #22c55e;padding:10px;border-radius:10px;font-size:12px;margin-top:10px;text-align:center}</style></head>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSIA - 17 Portails Complets</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:Arial;background:#0f172a;color:#fff;margin:0;padding:14px}
+.header{text-align:center;background:linear-gradient(135deg,#2563eb,#7c3aed);padding:18px;border-radius:16px}
+.header h1{margin:0;font-size:24px}
+.header h1 span{color:#facc15}
+.header p{margin:6px 0 0;font-size:13px;color:#e0e7ff}
+.topbar{display:flex;gap:8px;margin:14px 0}
+.topbar div{flex:1;background:#1e293b;padding:10px;border-radius:12px;text-align:center;font-size:12px}
+.topbar b{display:block;font-size:16px;color:#22c55e}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;color:#111;border-radius:14px;padding:14px;cursor:pointer;min-height:130px}
+.card b{font-size:14px;display:block}
+.card p{font-size:12px;color:#475569;margin:8px 0}
+.open{border:3px solid #22c55e}
+.locked{border:2px dashed #94a3b8}
+.badge{font-size:11px;padding:5px 9px;border-radius:20px;font-weight:bold}
+.green{background:#dcfce7;color:#166534}
+.red{background:#fee2e2;color:#991b1b}
+#view{background:#fff;color:#111;border-radius:16px;padding:16px;margin-top:16px;display:none}
+#view h2{margin:0 0 10px;font-size:19px}
+label{font-size:13px;font-weight:bold;display:block;margin-top:10px}
+input,select{width:100%;padding:11px;margin:6px 0;border:1px solid #cbd5e1;border-radius:9px}
+button{width:100%;padding:12px;border:0;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px}
+.btn-fiche{background:#7c3aed;color:#fff}
+.btn-listen{background:#16a34a;color:#fff}
+.btn-stop{background:#dc2626;color:#fff}
+.btn-blue{background:#2563eb;color:#fff}
+.btn-copy{background:#0ea5e9;color:#fff}
+.back{background:#e2e8f0;color:#111}
+.btn-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.out{background:#f1f5f9;padding:14px;border-radius:10px;white-space:pre-wrap;font-size:13px;line-height:1.6;margin-top:12px;min-height:220px}
+.voice{background:#ecfdf5;border:1px solid #22c55e;padding:11px;border-radius:10px;font-size:12px;margin-top:10px;text-align:center;color:#065f46}
+.pay{background:#fef3c7;padding:16px;border-radius:12px;text-align:center;color:#111}
+.footer{text-align:center;color:#94a3b8;font-size:11px;margin:16px 0}
+</style>
+</head>
 <body>
-<h1>GSIA <span>• 17 Portails</span></h1>
-<div class="sub">SANS CLÉ • 5 ouverts • Avec Voix IA 🔊</div>
+<div class="header">
+<h1>GSIA <span>• 17 PORTAILS</span></h1>
+<p>Plateforme Éducative Togo - SANS CLÉ - Version Complète 150+ lignes</p>
+<p>🇹🇬 Lomé • Français • Offline • Voix IA</p>
+</div>
+<div class="topbar">
+<div><b>5</b>Ouverts</div>
+<div><b>12</b>Payants</div>
+<div><b>100%</b>Offline + Voix</div>
+</div>
 <div class="grid" id="grid"></div>
 <div id="view"></div>
-<script>
-let currentText="";
-const portals=[
-{id:1,t:"01 Portail Cours",d:"Séquences & leçons",open:true},
-{id:2,t:"02 Portail Évaluation",d:"QCM, devoirs, corrections auto",open:true},
-{id:3,t:"03 Portail Classe Virtuelle",d:"Live + tableau + présence",open:true},
-{id:4,t:"04 Portail Élève",d:"Suivi personnalisé, progression IA",open:true},
-{id:5,t:"05 Portail Parent",d:"Bulletins & alertes",open:false},
-{id:6,t:"06 Portail Contenu",d:"Banque ressources Togo + IA",open:false},
-{id:7,t:"07 Portail Orientation",d:"IA conseillère métier locale",open:false},
-{id:8,t:"08 Portail Admin École",d:"Gestion + RAJ Registre d'Appel",open:false},
-{id:9,t:"09 Portail Formation Pro",d:"Micro-formations certifiantes",open:false},
-{id:10,t:"10 Portail Certification",d:"Attestations blockchain Gsia",open:false},
-{id:11,t:"11 Portail Développeur",d:"API ouverte devs togolais",open:false},
-{id:12,t:"12 Portail Communauté",d:"Forum enseignants & entraide",open:false},
-{id:13,t:"13 Portail Offline",d:"Mode sans internet zones rurales",open:false},
-{id:14,t:"14 Portail RAJ + Boutique",d:"Recherche Assistée + Vente",open:false},
-{id:15,t:"15 Portail Fiche Pédagogique",d:"Fiche pédagogique complète",open:false},
-{id:16,t:"16 Portail Développer une App",d:"Développer une application",open:false},
-{id:17,t:"17 Portail Programmation Web",d:"HTML, CSS, JS, Python",open:true},
-];
-const grid=document.getElementById('grid');const view=document.getElementById('view');
-portals.forEach(p=>{
- const div=document.createElement('div');
- div.className='card '+(p.open?'open':'locked');
- div.innerHTML=`<span class="badge ${p.open?'green':'red'}">${p.open?'✅ OUVERT':'🔒 PAYANT'}</span><br><br><b>${p.t}</b><p>${p.d}</p>`;
- div.onclick=()=>openPortal(p);grid.appendChild(div);
-});
-function openPortal(p){
- if(!p.open){view.style.display='block';view.innerHTML=`<div class="pay"><h2>🔒 ${p.t}</h2><p>Portail payant.</p><button onclick="alert('Paiement bientôt - Contact DG')">💳 Débloquer - Payer</button><button class="back" onclick="document.getElementById('view').style.display='none'">← Retour</button></div>`;view.scrollIntoView();return;}
- view.style.display='block';
- let html=`<h2>${p.t}</h2><button class="back" onclick="arreterVoix();document.getElementById('view').style.display='none'">← Retour aux portails</button><br><br>`;
- if(p.id===1) html+=`<label>Matière</label><select id="m"><option>Mathématiques</option><option>Français</option><option>Sciences</option></select><label>Classe</label><select id="c"><option>CP1</option><option>CE1</option><option>CM2</option><option>6ème</option></select><label>Leçon</label><input id="l" value="L'addition" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px"><div class="btn-row"><button class="btn-fiche" onclick="genCours()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="voice">🎓 Formation par IA : Génère la fiche, puis clique sur Écouter pour être formé par la voix IA</div><div class="out" id="out">Ta fiche va apparaître ici...</div>`;
- if(p.id===2) html+=`<label>Leçon</label><input id="l" value="L'addition" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px"><div class="btn-row"><button class="btn-fiche" onclick="genQCM()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="out" id="out">Ton QCM ici...</div>`;
- if(p.id===3) html+=`<label>Classe</label><input id="l" value="CM2 - Mathématiques" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px"><div class="btn-row"><button class="btn-fiche" onclick="genLive()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="out" id="out">Ta classe live ici...</div>`;
- if(p.id===4) html+=`<label>Élève</label><input id="l" value="Kossi" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px"><div class="btn-row"><button class="btn-fiche" onclick="genEleve()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="out" id="out">Suivi élève ici...</div>`;
- if(p.id===17) html+=`<label>Projet</label><select id="l"><option>Site vitrine HTML + CSS</option><option>Calculatrice en JS</option><option>Jeu en Python</option></select><div class="btn-row"><button class="btn-fiche" onclick="genWeb()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="out" id="out">Ton code ici...</div>`;
- view.innerHTML=html;view.scrollIntoView();
-}
-function setOut(t){currentText=t;document.getElementById('out').textContent=t;}
-function genCours(){const m=document.getElementById('m').value,c=document.getElementById('c').value,l=document.getElementById('l').value;setOut(`FICHE PÉDAGOGIQUE - ${m} - ${c} - ${l}\n\nOBJECTIF: L'élève saura faire ${l}\n\n1. RAPPEL 5 min: Révision\n2. DÉCOUVERTE: Exemple du marché de Lomé\n3. LEÇON: Explication simple pas à pas\n4. EXERCICES: 5 exercices progressifs\n5. ÉVALUATION: 3 questions\n6. DEVOIR: À la maison\n\nConseil IA: Parle lentement, donne des exemples concrets.`);}
-function genQCM(){const l=document.getElementById('l').value;setOut(`FICHE QCM - ${l}\n\nQ1: 12 + 8 = ? A) 18 B) 20 Bonne réponse C) 22\nQ2: 25 + 15 = ? A) 30 B) 40 Bonne réponse C) 45\nQ3: 100 + 50 = ? A) 150 Bonne réponse B) 120 C) 130\n\nCorrection automatique.`);}
-function genLive(){const l=document.getElementById('l').value;setOut(`FICHE CLASSE VIRTUELLE - ${l}\n\nLien: https://gsia.live/classe\nTableau: Activé\nPrésence: Liste prête\nDéroulé: Accueil, Leçon, Questions, Exercices.`);}
-function genEleve(){const l=document.getElementById('l').value;setOut(`FICHE ÉLÈVE - ${l}\n\nProgression: 78%\nMathématiques: 85% Très bien\nFrançais: 70% À améliorer\nConseil IA: Revoir l'addition à 2 chiffres.`);}
-function genWeb(){const l=document.getElementById('l').value;setOut(`FICHE PROGRAMMATION - ${l}\n\nÉtape 1: Crée un fichier index.html\nÉtape 2: Colle le code de base\nÉtape 3: Ouvre dans Chrome\nÉtape 4: Modifie le titre et teste\n\nCode: <h1>Bonjour Lomé !</h1> <button>Cliquer</button>`);}
-function ecouter(){if(!currentText||currentText.includes('ici...')){alert('Génère d’abord la fiche, puis clique sur Écouter');return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(currentText);u.lang='fr-FR';u.rate=0.9;speechSynthesis.speak(u);}
-function arreterVoix(){speechSynthesis.cancel();}
-</script></body></html>
+<div class="footer">GSIA © 2026 - Pour les enseignants du Togo - DG</div>
+<!-- FIN PARTIE 1 - Attends PARTIE 2 -->
