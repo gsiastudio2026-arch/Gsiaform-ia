@@ -1,4 +1,3 @@
-<!-- GSIA - PARTIE 1 / 3 - COPIE TOUT -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -56,4 +55,62 @@ button{width:100%;padding:12px;border:0;border-radius:10px;font-weight:bold;curs
 <div class="grid" id="grid"></div>
 <div id="view"></div>
 <div class="footer">GSIA © 2026 - Pour les enseignants du Togo - DG</div>
-<!-- FIN PARTIE 1 - Attends PARTIE 2 -->
+<script>
+let currentText = "";
+const portals = [
+{id:1,t:"01 Portail Cours",d:"Création séquences & leçons complètes",open:true,icon:"📚"},
+{id:2,t:"02 Portail Évaluation",d:"QCM, devoirs, corrections automatiques",open:true,icon:"📝"},
+{id:3,t:"03 Portail Classe Virtuelle",d:"Live + tableau + présence + chat",open:true,icon:"🎥"},
+{id:4,t:"04 Portail Élève",d:"Suivi personnalisé, progression IA",open:true,icon:"👦"},
+{id:5,t:"05 Portail Parent",d:"Bulletins, notes & alertes SMS",open:false,icon:"👨‍👩‍👧"},
+{id:6,t:"06 Portail Contenu",d:"Banque ressources Togo + IA",open:false,icon:"📦"},
+{id:7,t:"07 Portail Orientation",d:"IA conseillère métier locale Togo",open:false,icon:"🧭"},
+{id:8,t:"08 Portail Admin École",d:"Gestion + RAJ Registre d'Appel",open:false,icon:"🏫"},
+{id:9,t:"09 Portail Formation Pro",d:"Micro-formations certifiantes",open:false,icon:"🎓"},
+{id:10,t:"10 Portail Certification",d:"Attestations blockchain Gsia",open:false,icon:"🏆"},
+{id:11,t:"11 Portail Développeur",d:"API ouverte pour devs togolais",open:false,icon:"💻"},
+{id:12,t:"12 Portail Communauté",d:"Forum enseignants & entraide",open:false,icon:"💬"},
+{id:13,t:"13 Portail Offline",d:"Mode sans internet zones rurales",open:false,icon:"📴"},
+{id:14,t:"14 Portail RAJ + Boutique",d:"Recherche Assistée + Vente",open:false,icon:"🛒"},
+{id:15,t:"15 Portail Fiche Pédagogique",d:"Fiche pédagogique complète",open:false,icon:"📋"},
+{id:16,t:"16 Portail Développer une App",d:"Développer une application",open:false,icon:"🚀"},
+{id:17,t:"17 Portail Programmation Web",d:"HTML, CSS, JS, Python - Projets réels",open:true,icon:"🌐"},
+];
+const grid = document.getElementById('grid');
+const view = document.getElementById('view');
+portals.forEach(p=>{
+  const div=document.createElement('div');
+  div.className='card '+(p.open?'open':'locked');
+  div.innerHTML=`<span class="badge ${p.open?'green':'red'}">${p.open?'✅ OUVERT - GRATUIT':'🔒 PAYANT'}</span><br><br><b>${p.icon} ${p.t}</b><p>${p.d}</p><small>${p.open?'👉 Cliquer pour ouvrir':'👉 Cliquer pour débloquer'}</small>`;
+  div.onclick=()=>openPortal(p);
+  grid.appendChild(div);
+});
+function openPortal(p){
+  if(!p.open){
+    view.style.display='block';
+    view.innerHTML=`<div class="pay"><h3>🔒 ${p.t}</h3><p>${p.d}</p><p>Ce portail est <b>payant</b>.</p><button class="btn-blue" onclick="alert('Paiement bientôt - Contact DG WhatsApp')">💳 Débloquer - Payer</button><button class="back" onclick="fermer()">← Retour aux 17 portails</button></div>`;
+    view.scrollIntoView(); return;
+  }
+  view.style.display='block';
+  let html=`<h2>${p.icon} ${p.t}</h2><p style="color:#475569;font-size:13px">${p.d}</p><button class="back" onclick="fermer()">← Retour aux portails</button>`;
+  if(p.id===1){
+    html+=`<label>Matière</label><select id="m"><option>Mathématiques</option><option>Français</option><option>Sciences</option><option>Histoire-Géo</option><option>Anglais</option><option>EDC</option></select><label>Classe</label><select id="c"><option>CP1</option><option>CP2</option><option>CE1</option><option>CE2</option><option>CM1</option><option selected>CM2</option><option>6ème</option><option>5ème</option><option>4ème</option><option>3ème</option></select><label>Leçon / Thème</label><input id="l" value="L'addition"><label>Durée</label><select id="d"><option>45 min</option><option selected>60 min</option><option>90 min</option></select><div class="btn-row"><button class="btn-fiche" onclick="genCours()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="voice">🎓 FORMATION PAR IA : Génère la fiche, puis clique sur ÉCOUTER. L'IA te lit la fiche à voix haute comme un formateur.</div><div class="out" id="out">Ta fiche complète va apparaître ici... Clique sur Générer la fiche.</div><button class="btn-copy" onclick="copier()">📋 Copier la fiche</button>`;
+  }
+  if(p.id===2){
+    html+=`<label>Matière</label><select id="m"><option>Mathématiques</option><option>Français</option><option>Sciences</option></select><label>Classe</label><select id="c"><option>CM2</option><option>6ème</option><option>3ème</option></select><label>Leçon</label><input id="l" value="L'addition"><div class="btn-row"><button class="btn-fiche" onclick="genQCM()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="voice">🎓 Formation IA : Écoute le QCM, l'IA te dit les bonnes réponses.</div><div class="out" id="out">Ton QCM + correction auto ici...</div><button class="btn-copy" onclick="copier()">📋 Copier</button>`;
+  }
+  if(p.id===3){
+    html+=`<label>Nom de la classe</label><input id="l" value="CM2 - Mathématiques"><label>Matière</label><select id="m"><option>Mathématiques</option><option>Français</option><option>Sciences</option></select><div class="btn-row"><button class="btn-fiche" onclick="genLive()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="voice">🎓 Formation IA : Écoute le déroulement de ta classe virtuelle.</div><div class="out" id="out">Ta fiche Classe Virtuelle ici...</div><div style="background:#f8fafc;padding:12px;border-radius:10px;margin-top:10px"><b>✅ Présence :</b><br>☐ Kossi - Présent<br>☐ Ama - Présente<br>☐ Yao - Absent<br>☐ Aïcha - Présente</div>`;
+  }
+  if(p.id===4){
+    html+=`<label>Nom de l'élève</label><input id="l" value="Kossi"><label>Classe</label><select id="c"><option>CM2</option><option>6ème</option></select><label>Matière</label><select id="m"><option>Mathématiques</option><option>Français</option><option>Toutes</option></select><div class="btn-row"><button class="btn-fiche" onclick="genEleve()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="voice">🎓 Formation IA : L'IA t'explique la progression de l'élève à voix haute.</div><div class="out" id="out">Suivi personnalisé de l'élève ici...</div>`;
+  }
+  if(p.id===17){
+    html+=`<label>Projet à créer</label><select id="l"><option>Site vitrine HTML + CSS - Boutique à Lomé</option><option>Calculatrice en JavaScript</option><option>Jeu Devine le nombre en Python</option><option>Portfolio personnel</option></select><label>Niveau</label><select id="c"><option>Débutant</option><option>Intermédiaire</option></select><div class="btn-row"><button class="btn-fiche" onclick="genWeb()">📄 Générer la fiche</button><button class="btn-listen" onclick="ecouter()">🔊 Écouter</button><button class="btn-stop" onclick="arreterVoix()">⏹️ Arrêter</button></div><div class="voice">🎓 Formation IA : L'IA t'explique le code ligne par ligne à voix haute.</div><div class="out" id="out">Ton projet complet HTML / CSS / JS / Python ici... Clique sur Générer la fiche.</div><button class="btn-copy" onclick="copier()">📋 Copier le code</button>`;
+  }
+  view.innerHTML=html;
+  view.scrollIntoView();
+}
+function fermer(){ arreterVoix(); view.style.display='none'; window.scrollTo(0,0); }
+function setOut(t){ currentText=t; document.getElementById('out').textContent=t; }
+
